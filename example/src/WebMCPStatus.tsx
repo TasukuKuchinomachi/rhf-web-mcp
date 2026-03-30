@@ -25,9 +25,25 @@ export function WebMCPStatus() {
           background: hasWebMCP ? "#4caf50" : "#ff9800",
         }}
       />
-      {hasWebMCP
-        ? "WebMCP 対応 — MCP ツールが登録されています"
-        : "WebMCP 未対応 — Chrome 146+ でフラグを有効にしてください"}
+      {hasWebMCP ? (
+        "WebMCP 対応 — MCP ツールが登録されています"
+      ) : (
+        <span>
+          WebMCP 未対応 —{" "}
+          <a
+            href="chrome://flags/#enable-webmcp-testing"
+            style={{ color: "inherit", textDecoration: "underline" }}
+            onClick={(e) => {
+              e.preventDefault();
+              navigator.clipboard.writeText("chrome://flags/#enable-webmcp-testing");
+              alert("chrome://flags/#enable-webmcp-testing をコピーしました。アドレスバーに貼り付けてください。");
+            }}
+          >
+            chrome://flags/#enable-webmcp-testing
+          </a>
+          {" "}を有効にしてください
+        </span>
+      )}
     </div>
   );
 }
