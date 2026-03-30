@@ -13,7 +13,7 @@ export interface WebMCPToolDefinition {
   name: string;
   description: string;
   inputSchema: Record<string, unknown>;
-  handler: (params: Record<string, unknown>) => Promise<WebMCPToolResult>;
+  execute: (params: Record<string, unknown>) => Promise<WebMCPToolResult>;
 }
 
 export interface ModelContext {

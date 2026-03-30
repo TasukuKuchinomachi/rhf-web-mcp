@@ -33,7 +33,7 @@ export function createTools(
       name: `${name}_fill`,
       description: `${description} — フィールドに値を入力し、バリデーションを実行して結果を返す`,
       inputSchema: fillSchema,
-      handler: async (params) => {
+      execute: async (params) => {
         for (const [key, value] of Object.entries(params)) {
           form.setValue(key, value, { shouldDirty: true });
         }
@@ -49,7 +49,7 @@ export function createTools(
       name: `${name}_get_state`,
       description: `${description} — 現在の値・エラー・dirty状態を取得する（readOnly）`,
       inputSchema: EMPTY_SCHEMA,
-      handler: async () => {
+      execute: async () => {
         return textResult({
           values: form.getValues(),
           errors: formatErrors(form.formState.errors),
@@ -63,7 +63,7 @@ export function createTools(
       name: `${name}_validate`,
       description: `${description} — バリデーションを実行して結果を返す（readOnly）`,
       inputSchema: EMPTY_SCHEMA,
-      handler: async () => {
+      execute: async () => {
         const isValid = await form.trigger();
         return textResult({
           isValid,
@@ -75,7 +75,7 @@ export function createTools(
       name: `${name}_reset`,
       description: `${description} — フォームをデフォルト値にリセットする`,
       inputSchema: EMPTY_SCHEMA,
-      handler: async () => {
+      execute: async () => {
         form.reset();
         return textResult({ success: true });
       },

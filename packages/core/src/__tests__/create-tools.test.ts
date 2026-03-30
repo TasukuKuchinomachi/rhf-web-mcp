@@ -55,7 +55,7 @@ describe("createTools", () => {
     const tools = createTools(form, SCHEMA, OPTIONS);
     const fill = tools[0];
 
-    const result = await fill.handler({ name: "太郎", email: "test@example.com" });
+    const result = await fill.execute({ name: "太郎", email: "test@example.com" });
 
     expect(form.setValue).toHaveBeenCalledWith("name", "太郎", {
       shouldDirty: true,
@@ -80,7 +80,7 @@ describe("createTools", () => {
       },
     });
     const tools = createTools(form, SCHEMA, OPTIONS);
-    const result = await tools[0].handler({});
+    const result = await tools[0].execute({});
 
     const parsed = JSON.parse(result.content[0].text);
     expect(parsed.success).toBe(false);
@@ -98,7 +98,7 @@ describe("createTools", () => {
       },
     });
     const tools = createTools(form, SCHEMA, OPTIONS);
-    const result = await tools[1].handler({});
+    const result = await tools[1].execute({});
 
     const parsed = JSON.parse(result.content[0].text);
     expect(parsed.values).toEqual({ name: "太郎" });
@@ -109,7 +109,7 @@ describe("createTools", () => {
   it("validate ツールがバリデーション結果を返す", async () => {
     const form = createMockForm();
     const tools = createTools(form, SCHEMA, OPTIONS);
-    const result = await tools[2].handler({});
+    const result = await tools[2].execute({});
 
     const parsed = JSON.parse(result.content[0].text);
     expect(parsed.isValid).toBe(true);
@@ -119,7 +119,7 @@ describe("createTools", () => {
   it("reset ツールがフォームをリセットする", async () => {
     const form = createMockForm();
     const tools = createTools(form, SCHEMA, OPTIONS);
-    const result = await tools[3].handler({});
+    const result = await tools[3].execute({});
 
     expect(form.reset).toHaveBeenCalled();
     const parsed = JSON.parse(result.content[0].text);
