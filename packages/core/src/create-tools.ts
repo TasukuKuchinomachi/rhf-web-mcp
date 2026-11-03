@@ -15,7 +15,7 @@ const EMPTY_SCHEMA = {
 };
 
 /**
- * 4つの MCP ツール定義を生成する。
+ * 5つの MCP ツール定義を生成する。
  */
 export function createTools(
   form: UseFormReturn<any>,
@@ -78,6 +78,14 @@ export function createTools(
       execute: async () => {
         form.reset();
         return textResult({ success: true });
+      },
+    },
+    {
+      name: `${name}_get_schema`,
+      description: `${description} — フォームの完全な JSON Schema（required を含む）を返す（readOnly）`,
+      inputSchema: EMPTY_SCHEMA,
+      execute: async () => {
+        return textResult(inputSchema);
       },
     },
   ];
