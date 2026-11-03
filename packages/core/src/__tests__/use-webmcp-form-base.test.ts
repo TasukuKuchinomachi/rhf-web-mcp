@@ -45,7 +45,7 @@ describe("useWebMCPFormBase", () => {
     }
   });
 
-  it("modelContext が存在する場合、4つのツールを登録する", () => {
+  it("modelContext が存在する場合、5つのツールを登録する", () => {
     const mc = createMockModelContext();
     (navigator as any).modelContext = mc;
 
@@ -56,7 +56,7 @@ describe("useWebMCPFormBase", () => {
       })
     );
 
-    expect(mc.registerTool).toHaveBeenCalledTimes(4);
+    expect(mc.registerTool).toHaveBeenCalledTimes(5);
     const names = (mc.registerTool as any).mock.calls.map(
       (c: any) => c[0].name
     );
@@ -65,6 +65,7 @@ describe("useWebMCPFormBase", () => {
       "test_get_state",
       "test_validate",
       "test_reset",
+      "test_get_schema",
     ]);
   });
 
@@ -81,13 +82,14 @@ describe("useWebMCPFormBase", () => {
 
     unmount();
 
-    expect(mc.unregisterTool).toHaveBeenCalledTimes(4);
+    expect(mc.unregisterTool).toHaveBeenCalledTimes(5);
     const names = (mc.unregisterTool as any).mock.calls.map((c: any) => c[0]);
     expect(names).toEqual([
       "test_fill",
       "test_get_state",
       "test_validate",
       "test_reset",
+      "test_get_schema",
     ]);
   });
 

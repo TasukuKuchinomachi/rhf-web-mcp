@@ -32,14 +32,15 @@ const SCHEMA = {
 const OPTIONS = { name: "contact", description: "お問い合わせフォーム" };
 
 describe("createTools", () => {
-  it("4つのツールを生成する", () => {
+  it("5つのツールを生成する", () => {
     const tools = createTools(createMockForm(), SCHEMA, OPTIONS);
-    expect(tools).toHaveLength(4);
+    expect(tools).toHaveLength(5);
     expect(tools.map((t) => t.name)).toEqual([
       "contact_fill",
       "contact_get_state",
       "contact_validate",
       "contact_reset",
+      "contact_get_schema",
     ]);
   });
 
@@ -124,5 +125,24 @@ describe("createTools", () => {
     expect(form.reset).toHaveBeenCalled();
     const parsed = JSON.parse(result.content[0].text);
     expect(parsed.success).toBe(true);
+  });
+
+  it("get_schema ツールが required を含む完全なスキーマを返す", async () => {
+    const form = createMockForm();
+    const tools = createTools(form, SCHEMA, OPTIONS);
+    const getSchema = tools[4];
+
+    expect(getSchema.name).toBe("contact_get_schema");
+    expect(getSchema.inputSchema).toEqual({
+      type: "object",
+      properties: {},
+      additionalProperties: false,
+    });
+
+    const result = await getSchema.execute({});
+    const parsed = JSON.parse(result.content[0].text);
+
+    expect(parsed).toEqual(SCHEMA);
+    expect(parsed.required).toEqual(["name", "email"]);
   });
 });

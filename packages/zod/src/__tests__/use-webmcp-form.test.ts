@@ -57,7 +57,7 @@ describe("useWebMCPForm", () => {
       })
     );
 
-    expect(mc.registerTool).toHaveBeenCalledTimes(4);
+    expect(mc.registerTool).toHaveBeenCalledTimes(5);
 
     // fill ツールの inputSchema に properties が含まれていることを確認
     const fillTool = (mc.registerTool as any).mock.calls[0][0];
@@ -83,6 +83,6 @@ describe("useWebMCPForm", () => {
 
     unmount();
 
-    expect(mc.unregisterTool).toHaveBeenCalledTimes(4);
+    expect(mc.unregisterTool).toHaveBeenCalledTimes(5);
   });
 });

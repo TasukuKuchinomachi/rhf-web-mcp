@@ -97,6 +97,7 @@ function ContactForm() {
 | `contact_get_state` | 現在の値・エラー・dirty状態を取得する（readOnly） |
 | `contact_validate` | バリデーションを実行して結果を返す（readOnly） |
 | `contact_reset` | フォームをデフォルト値にリセットする |
+| `contact_get_schema` | フォームの完全な JSON Schema（required を含む）を返す（readOnly） |
 
 コンポーネントが unmount されると、全ツールが自動的に解除される。
 
