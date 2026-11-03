@@ -20,7 +20,7 @@
   },
   "files": ["dist"],
   "scripts": {
-    "build": "tsup"
+    "build": "tsdown"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

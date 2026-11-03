@@ -4,7 +4,7 @@ import path from "path";
 export default defineConfig({
   resolve: {
     alias: {
-      "@rhf-webmcp/core": path.resolve(__dirname, "packages/core/src"),
+      "@rhf-webmcp/core": path.resolve(import.meta.dirname, "packages/core/src"),
     },
   },
   test: {

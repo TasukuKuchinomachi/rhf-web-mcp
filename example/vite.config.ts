@@ -7,8 +7,8 @@ export default defineConfig({
   base: "./",
   resolve: {
     alias: {
-      "@rhf-webmcp/core": path.resolve(__dirname, "../packages/core/src"),
-      "@rhf-webmcp/zod": path.resolve(__dirname, "../packages/zod/src"),
+      "@rhf-webmcp/core": path.resolve(import.meta.dirname, "../packages/core/src"),
+      "@rhf-webmcp/zod": path.resolve(import.meta.dirname, "../packages/zod/src"),
     },
   },
 });

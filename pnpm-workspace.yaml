@@ -2,4 +2,5 @@ packages:
   - packages/*
   - example
 
-onlyBuiltDependenciesFile: ''
+allowBuilds:
+  esbuild: true

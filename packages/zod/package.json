@@ -20,16 +20,15 @@
   },
   "files": ["dist"],
   "scripts": {
-    "build": "tsup"
+    "build": "tsdown"
   },
   "dependencies": {
-    "@rhf-webmcp/core": "workspace:*",
-    "zod-to-json-schema": "^3.24.0"
+    "@rhf-webmcp/core": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-hook-form": ">=7.0.0",
-    "zod": ">=3.0.0"
+    "zod": ">=4.0.0"
   },
   "license": "MIT"
 }

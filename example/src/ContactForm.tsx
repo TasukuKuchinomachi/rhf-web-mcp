@@ -5,9 +5,9 @@ import { useWebMCPForm } from "@rhf-webmcp/zod";
 
 const schema = z.object({
   name: z.string().min(1, "名前は必須です"),
-  email: z.string().email("有効なメールアドレスを入力してください"),
+  email: z.email("有効なメールアドレスを入力してください"),
   category: z.enum(["general", "support", "feedback"], {
-    errorMap: () => ({ message: "カテゴリを選択してください" }),
+    error: "カテゴリを選択してください",
   }),
   message: z.string().min(10, "メッセージは10文字以上で入力してください"),
 });
